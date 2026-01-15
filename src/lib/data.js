@@ -33,6 +33,30 @@ export async function obtenerGrupo(id) {
 }
 
 
+// ------------------------- ESTUDIANTES -------------------------
+
+export async function obtenerEstudiantes() {
+    try {
+        const estudiantes = await prisma.estudiante.findMany()
+        return estudiantes
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function obtenerEstudiante(id) {
+    try {
+        const estudiante = await prisma.estudiante.findUnique({
+            where: {
+                id: Number(id)
+            }
+        })
+        return estudiante
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 // ------------------------- ASIGNATURAS ------------------------- 
 

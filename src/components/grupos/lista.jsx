@@ -10,7 +10,7 @@ export default function Lista({ promesaGrupos }) {
 
     return (
         <div className='flex flex-wrap gap-10'>
-            {grupos.map((grupo) => <Item grupo={grupo} key={grupo.id} />)}
+            {grupos?.map((grupo) => <Item grupo={grupo} key={grupo.id} />)}
             <button onClick={() => alert('hola')}>Boton</button>
         </div>
     )

@@ -20,11 +20,10 @@ async function PaginaGrupo({ params }) {
 export default PaginaGrupo
 
 
-
-
-
 async function Grupo({ id }) {
     const grupo = await obtenerGrupo(id)
+
+    if (!grupo) return <p className="text-red-500">Grupo no encontrado</p>
 
     return (
         <>
