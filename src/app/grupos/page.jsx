@@ -2,7 +2,9 @@ import Lista from '@/components/grupos/lista'
 import { obtenerGrupos } from '@/lib/data'
 import { Suspense } from 'react'
 
-async function PaginaGrupos() {
+
+
+function PaginaGrupos() {
 
     const promesaGrupos = obtenerGrupos()  // Promesa, no usamos AWAIT
 
