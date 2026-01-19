@@ -22,36 +22,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300`}
       >
-        <nav className="bg-white border-b border-slate-200 sticky top-0 z-10 dark:bg-slate-900 dark:border-slate-800 transition-colors duration-300">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between h-16">
-              <div className="flex">
-                <div className="flex-shrink-0 flex items-center">
-                  <span className="text-xl font-bold text-blue-600">Escuela 2026</span>
-                </div>
-                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                  <Link href="/" className="border-transparent text-slate-500 hover:border-blue-500 hover:text-slate-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                    Inicio
-                  </Link>
-                  <Link href="/grupos" className="border-transparent text-slate-500 hover:border-blue-500 hover:text-slate-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                    Grupos
-                  </Link>
-                  <Link href="/estudiantes" className="border-transparent text-slate-500 hover:border-blue-500 hover:text-slate-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                    Estudiantes
-                  </Link>
-                  <Link href="/asignaturas" className="border-transparent text-slate-500 hover:border-blue-500 hover:text-slate-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                    Asignaturas
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
-        <main>
-          {children}
-        </main>
+        {children}
       </body>
     </html>
   );
