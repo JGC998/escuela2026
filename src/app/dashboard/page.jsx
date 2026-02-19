@@ -13,7 +13,7 @@ export default async function DashboardPage() {
     const user = session.user
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 p-8">
+        <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 p-8">
             <div className="max-w-4xl mx-auto space-y-8">
                 {/* Header */}
                 <div className="flex items-center justify-between">
@@ -38,7 +38,7 @@ export default async function DashboardPage() {
                         {user.image ? (
                             <img src={user.image} alt={user.name} className="w-24 h-24 rounded-full border-4 border-blue-100 dark:border-blue-900" />
                         ) : (
-                            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-3xl font-bold">
+                            <div className="w-24 h-24 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-3xl font-bold">
                                 {user.name?.charAt(0) || user.email?.charAt(0) || '?'}
                             </div>
                         )}
@@ -47,8 +47,8 @@ export default async function DashboardPage() {
                             <p className="text-slate-500 dark:text-slate-400 text-sm">{user.email}</p>
                         </div>
                         <span className={`px-3 py-1 rounded-full text-xs font-semibold ${user.role === 'ADMIN'
-                                ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
-                                : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
+                            ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+                            : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
                             }`}>
                             {user.role}
                         </span>

@@ -67,7 +67,7 @@ export default function AdminPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-red-50 dark:from-slate-950 dark:to-red-950/20 p-8">
+        <div className="min-h-screen bg-linear-to-br from-slate-50 to-red-50 dark:from-slate-950 dark:to-red-950/20 p-8">
             <div className="max-w-6xl mx-auto space-y-8">
                 <div className="flex items-center justify-between">
                     <div>
@@ -184,7 +184,7 @@ export default function AdminPage() {
                                                     {user.image ? (
                                                         <img src={user.image} alt={user.name} className="w-8 h-8 rounded-full" />
                                                     ) : (
-                                                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
+                                                        <div className="w-8 h-8 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
                                                             {(user.name || user.email)?.charAt(0).toUpperCase()}
                                                         </div>
                                                     )}
@@ -194,8 +194,8 @@ export default function AdminPage() {
                                             <td className="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">{user.email}</td>
                                             <td className="px-6 py-4">
                                                 <span className={`px-2 py-1 rounded-full text-xs font-semibold ${user.role === 'ADMIN'
-                                                        ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
-                                                        : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
+                                                    ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+                                                    : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
                                                     }`}>{user.role}</span>
                                             </td>
                                             <td className="px-6 py-4 text-sm text-slate-400">
