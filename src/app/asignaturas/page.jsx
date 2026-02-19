@@ -3,9 +3,12 @@ import ListaAsignaturas from '@/components/asignaturas/lista'
 import { obtenerAsignaturas } from '@/lib/data'
 import { Suspense } from 'react'
 import Form from '@/components/asignaturas/form'
+import { auth } from '@/auth'
 
 
-function PaginaAsignaturas() {
+async function PaginaAsignaturas() {
+    const session = await auth()
+    const isAdmin = session?.user?.role === 'ADMIN'
 
     const promesaAsignaturas = obtenerAsignaturas()
 
@@ -21,21 +24,21 @@ function PaginaAsignaturas() {
                     <p className="text-slate-500 dark:text-slate-400 text-lg">Controla el plan de estudios, profesores y horarios</p>
                 </div>
 
-                <div className="flex flex-col md:flex-row gap-12 items-start">
-                    <div className="w-full md:w-1/3 sticky top-8">
-                        <Form />
-                    </div>
+                <div className={`flex flex-col ${isAdmin ? 'md:flex-row' : ''} gap-12 items-start`}>
+                    {isAdmin && (
+                        <div className="w-full md:w-1/3 sticky top-8">
+                            <Form />
+                        </div>
+                    )}
 
-                    <div className="w-full md:w-2/3">
+                    <div className={`w-full ${isAdmin ? 'md:w-2/3' : ''}`}>
                         <h2 className="text-2xl font-semibold text-slate-800 dark:text-slate-100 mb-6 border-b pb-2 border-slate-200 dark:border-slate-800">Lista de Asignaturas</h2>
                         <Suspense fallback={
                             <div className="flex justify-center p-12">
                                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div>
                             </div>
                         }>
-                            <ListaAsignaturas
-                                promesaAsignaturas={promesaAsignaturas}
-                            />
+                            <ListaAsignaturas promesaAsignaturas={promesaAsignaturas} />
                         </Suspense>
                     </div>
                 </div>
