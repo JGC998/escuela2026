@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -12,7 +12,7 @@ model Grupo {
   nombre      String       @unique
   tutor       String
   aula        String
-  estudiantes Estudiante[] // Relación 1:N con Estudiante
+  estudiantes Estudiante[]
 }
 
 model Estudiante {
@@ -20,16 +20,18 @@ model Estudiante {
   nombre           String
   fecha_nacimiento DateTime
   foto             String?
-  tutor_legal      String       @default("ambos padres") // Valores: ambos padres, sólo padre, sólo madre, algún familiar, otro
+  tutor_legal      String
   grupoId          Int?
-  grupo            Grupo?       @relation(fields: [grupoId], references: [id]) // Relación N:1 con Grupo
-  asignaturas      Asignatura[] // Relación N:M con Asignatura
+  grupo            Grupo?       @relation(fields: [grupoId], references: [id])
+  asignaturas      Asignatura[] @relation("AsignaturaToEstudiante")
+
+  @@index([grupoId], map: "Estudiante_grupoId_idx")
 }
 
 model Asignatura {
-  id              Int          @id @default(autoincrement())
-  nombre          String
-  profesor        String?
-  horas_semanales Int
-  estudiantes     Estudiante[] // Relación N:M con Estudiante
+  id           Int          @id @default(autoincrement())
+  nombre       String
+  profesor     String?
+  horas_semana Int
+  estudiantes  Estudiante[] @relation("AsignaturaToEstudiante")
 }

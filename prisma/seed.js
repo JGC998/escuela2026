@@ -68,7 +68,7 @@ async function main() {
         data: {
             nombre: 'Matemáticas',
             profesor: 'Rocío',
-            horas_semanales: 4,
+            horas_semana: 4,
             estudiantes: {
                 connect: [{ id: est1.id }, { id: est2.id }],
             },
@@ -79,7 +79,7 @@ async function main() {
         data: {
             nombre: 'Robótica',
             profesor: 'Pedro',
-            horas_semanales: 2,
+            horas_semana: 2,
             estudiantes: {
                 connect: [{ id: est2.id }, { id: est3.id }],
             },

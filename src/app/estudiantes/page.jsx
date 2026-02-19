@@ -1,13 +1,15 @@
 import Link from 'next/link'
 import ListaEstudiantes from '@/components/estudiantes/lista'
-import { obtenerEstudiantes } from '@/lib/data'
+import { obtenerEstudiantes, obtenerGruposIdNombre, obtenerAsignaturasIdNombre } from '@/lib/data'
 import { Suspense } from 'react'
 import Form from '@/components/estudiantes/form'
 
 
-function PaginaEstudiantes() {
+async function PaginaEstudiantes() {
 
     const promesaEstudiantes = obtenerEstudiantes()
+    const gruposIdNombre = await obtenerGruposIdNombre()
+    const asignaturasIdNombre = await obtenerAsignaturasIdNombre()
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-8 font-sans transition-colors duration-300">
@@ -23,7 +25,7 @@ function PaginaEstudiantes() {
 
                 <div className="flex flex-col md:flex-row gap-12 items-start">
                     <div className="w-full md:w-1/3 sticky top-8">
-                        <Form />
+                        <Form gruposIdNombre={gruposIdNombre} asignaturasIdNombre={asignaturasIdNombre} />
                     </div>
 
                     <div className="w-full md:w-2/3">

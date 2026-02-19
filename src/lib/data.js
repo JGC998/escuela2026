@@ -5,30 +5,57 @@ import prisma from '@/lib/prisma'
 
 // ------------------------- GRUPOS ------------------------- 
 
-export async function obtenerGrupos() {
+// ------------------------- GRUPOS ------------------------- 
 
+export async function obtenerGrupos() {
     try {
-        await new Promise((resolve) => setTimeout(resolve, 2000))
-        const grupos = await prisma.grupo.findMany()
-        return grupos
+        const grupos = await prisma.grupo.findMany({
+            include: {
+                estudiantes: {
+                    select: {
+                        id: true,
+                        nombre: true
+                    }
+                }
+            }
+        })
+        return JSON.parse(JSON.stringify(grupos))
     } catch (error) {
         console.log(error)
+        return []
     }
 }
 
 
 export async function obtenerGrupo(id) {
-
     try {
-        await new Promise((resolve) => setTimeout(resolve, 2000))
         const grupo = await prisma.grupo.findUnique({
             where: {
                 id: Number(id)
+            },
+            include: {
+                estudiantes: true
             }
         })
-        return grupo
+        return JSON.parse(JSON.stringify(grupo))
     } catch (error) {
         console.log(error)
+        return null
+    }
+}
+
+export async function obtenerGruposIdNombre() {
+    try {
+        const grupos = await prisma.grupo.findMany({
+            select: {
+                id: true,
+                nombre: true
+            }
+        })
+        return JSON.parse(JSON.stringify(grupos))
+    } catch (error) {
+        console.log(error)
+        return []
     }
 }
 
@@ -37,10 +64,16 @@ export async function obtenerGrupo(id) {
 
 export async function obtenerEstudiantes() {
     try {
-        const estudiantes = await prisma.estudiante.findMany()
-        return estudiantes
+        const estudiantes = await prisma.estudiante.findMany({
+            include: {
+                grupo: true,
+                asignaturas: true
+            }
+        })
+        return JSON.parse(JSON.stringify(estudiantes))
     } catch (error) {
         console.log(error)
+        return []
     }
 }
 
@@ -49,11 +82,16 @@ export async function obtenerEstudiante(id) {
         const estudiante = await prisma.estudiante.findUnique({
             where: {
                 id: Number(id)
+            },
+            include: {
+                grupo: true,
+                asignaturas: true
             }
         })
-        return estudiante
+        return JSON.parse(JSON.stringify(estudiante))
     } catch (error) {
         console.log(error)
+        return null
     }
 }
 
@@ -61,26 +99,48 @@ export async function obtenerEstudiante(id) {
 // ------------------------- ASIGNATURAS ------------------------- 
 
 export async function obtenerAsignaturas() {
-
     try {
-        const asignaturas = await prisma.asignatura.findMany()
-        return asignaturas
+        const asignaturas = await prisma.asignatura.findMany({
+            include: {
+                estudiantes: true
+            }
+        })
+        return JSON.parse(JSON.stringify(asignaturas))
     } catch (error) {
         console.log(error)
+        return []
     }
 }
 
 
 export async function obtenerAsignatura(id) {
-
     try {
         const asignatura = await prisma.asignatura.findUnique({
             where: {
                 id: Number(id)
+            },
+            include: {
+                estudiantes: true
             }
         })
-        return asignatura
+        return JSON.parse(JSON.stringify(asignatura))
     } catch (error) {
         console.log(error)
+        return null
+    }
+}
+
+export async function obtenerAsignaturasIdNombre() {
+    try {
+        const asignaturas = await prisma.asignatura.findMany({
+            select: {
+                id: true,
+                nombre: true
+            }
+        })
+        return JSON.parse(JSON.stringify(asignaturas))
+    } catch (error) {
+        console.log(error)
+        return []
     }
 }
